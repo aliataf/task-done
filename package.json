@@ -10,16 +10,28 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:task-done.helloWorld"
+		"onCommand:task-done.taskDone"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "task-done.helloWorld",
-				"title": "Hello World"
+				"command": "task-done.taskDone",
+				"title": "Task Done",
+				"icon": {
+					"light": "./images/task-done.png",
+					"dark": "./images/task-done.png"
+				}
 			}
-		]
+		],
+		"menus": {
+			"editor/title": [
+			  	{
+					"command": "task-done.taskDone",
+					"group": "navigation"
+			 	}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
