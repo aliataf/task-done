@@ -2,7 +2,7 @@
 	"name": "task-done",
 	"displayName": "Task Done",
 	"description": "Close all opened tabs and collapse folders in explorer when the task is done",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.59.0"
 	},
