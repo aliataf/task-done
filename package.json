@@ -8,6 +8,7 @@
     "url": "https://github.com/aliataf/task-done.git"
   },
   "license": "MIT",
+  "publisher": "Ali Ataf",
   "engines": {
     "vscode": "^1.59.0"
   },
