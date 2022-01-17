@@ -17,3 +17,7 @@ For example if there is an image subfolder under your extension project workspac
 ### 1.0.0
 
 This is the first stable version of the extension.
+
+### 1.0.1
+
+- Licensed the extension under the MIT license.
