@@ -3,6 +3,10 @@
   "displayName": "Task Done",
   "description": "Close all opened tabs and collapse folders in explorer when the task is done",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliataf/task-done.git"
+  },
   "engines": {
     "vscode": "^1.59.0"
   },
