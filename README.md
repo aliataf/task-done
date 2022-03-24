@@ -4,7 +4,7 @@ Extension that closes all open tabs in the current window and collapses the file
 
 ## Preview
 
-<img src=https://raw.githubusercontent.com/aliataf/task-done/images/preview.gif width=280 height=100>
+<img src=https://raw.githubusercontent.com/aliataf/task-done/main/images/preview.gif width=280 height=100>
 
 ## Release Notes
 
