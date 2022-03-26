@@ -19,7 +19,7 @@
     "onCommand:task-done.taskDone"
   ],
   "main": "./dist/extension.js",
-  "icon": "./images/task-done.png",
+  "icon": "images/task-done.png",
   "contributes": {
     "commands": [
       {
