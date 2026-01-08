@@ -10,14 +10,12 @@
   "license": "MIT",
   "publisher": "aliataf",
   "engines": {
-    "vscode": "^1.59.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:task-done.taskDone"
-  ],
+
   "main": "./dist/extension.js",
   "icon": "images/task-done.png",
   "contributes": {
