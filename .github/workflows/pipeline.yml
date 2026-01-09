@@ -44,7 +44,7 @@ jobs:
         run: npm run lint
 
       # Linux requires a virtual display server for VS Code UI tests
-      - name: Run Tests (Linux - xvfb)
+      - name: Run Tests (Linux)
         if: runner.os == 'Linux'
         run: xvfb-run -a npm test
 
@@ -79,6 +79,11 @@ jobs:
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: npx @vscode/vsce publish
+
+      - name: Publish to Open VSX Registry
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: npx ovsx publish
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
