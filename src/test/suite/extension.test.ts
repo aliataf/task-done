@@ -34,6 +34,16 @@ suite('Task Done Extension Test Suite', function() {
 		}
 	});
 
+	// Helper to retry assertions until they pass or timeout
+	async function poll(fn: () => boolean, timeout: number = 2000): Promise<void> {
+		const start = Date.now();
+		while (Date.now() - start < timeout) {
+			if (fn()) return;
+			await new Promise(r => setTimeout(r, 100));
+		}
+		throw new Error('Condition not met within timeout');
+	}
+
 	test('Command should close all editors', async function() {
 		const doc = await vscode.workspace.openTextDocument({ content: 'Test' });
 		await vscode.window.showTextDocument(doc);
@@ -41,8 +51,8 @@ suite('Task Done Extension Test Suite', function() {
 
 		await vscode.commands.executeCommand('task-done.taskDone');
 
-		// Small delay for UI update
-		await new Promise(r => setTimeout(r, 100)); 
+		// Wait for UI to update
+		await poll(() => vscode.window.visibleTextEditors.length === 0);
 		assert.strictEqual(vscode.window.visibleTextEditors.length, 0);
 	});
 
@@ -56,7 +66,7 @@ suite('Task Done Extension Test Suite', function() {
 
 		await vscode.commands.executeCommand('task-done.taskDone');
 
-		await new Promise(r => setTimeout(r, 100));
+		await poll(() => vscode.window.visibleTextEditors.length === 0);
 		assert.strictEqual(vscode.window.visibleTextEditors.length, 0);
 	});
 
