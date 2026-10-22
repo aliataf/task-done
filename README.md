@@ -1,6 +1,10 @@
 # Task Done
 
-Extension that closes all open tabs in the current window and collapses the file tree.
+Extension that closes all open file tabs in the current window and collapses the file tree. Non-file tabs such as webviews (e.g. the Claude Code panel) and terminals are left open.
+
+## Settings
+
+- `taskDone.closeOnlyFileTabs` (default: `true`): close only file tabs. Set to `false` to close every tab, including webviews and terminals.
 
 ## Preview
 
