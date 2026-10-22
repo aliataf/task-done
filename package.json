@@ -28,6 +28,16 @@
         }
       }
     ],
+    "configuration": {
+      "title": "Task Done",
+      "properties": {
+        "taskDone.closeOnlyFileTabs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Close only file tabs. When disabled, all tabs are closed, including webviews (e.g. Claude Code) and terminals."
+        }
+      }
+    },
     "menus": {
       "editor/title": [
         {

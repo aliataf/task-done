@@ -70,6 +70,33 @@ suite('Task Done Extension Test Suite', function() {
 		assert.strictEqual(vscode.window.visibleTextEditors.length, 0);
 	});
 
+	test('Command should not close webview tabs', async function() {
+		const panel = vscode.window.createWebviewPanel('taskDoneTest', 'Webview', vscode.ViewColumn.One, {});
+		const doc = await vscode.workspace.openTextDocument({ content: 'File' });
+		await vscode.window.showTextDocument(doc, vscode.ViewColumn.One);
+
+		await vscode.commands.executeCommand('task-done.taskDone');
+
+		await poll(() => vscode.window.visibleTextEditors.length === 0);
+		const remaining = vscode.window.tabGroups.all.flatMap(group => group.tabs);
+		assert.ok(remaining.some(tab => tab.input instanceof vscode.TabInputWebview));
+		panel.dispose();
+	});
+
+	test('Command should close webview tabs when closeOnlyFileTabs is disabled', async function() {
+		const config = vscode.workspace.getConfiguration('taskDone');
+		await config.update('closeOnlyFileTabs', false, vscode.ConfigurationTarget.Global);
+		try {
+			vscode.window.createWebviewPanel('taskDoneTest', 'Webview', vscode.ViewColumn.One, {});
+
+			await vscode.commands.executeCommand('task-done.taskDone');
+
+			await poll(() => vscode.window.tabGroups.all.every(group => group.tabs.length === 0));
+		} finally {
+			await config.update('closeOnlyFileTabs', undefined, vscode.ConfigurationTarget.Global);
+		}
+	});
+
 	test('Command should be safe to run with no editors', async function() {
 		await vscode.commands.executeCommand('workbench.action.closeAllEditors');
 		assert.strictEqual(vscode.window.visibleTextEditors.length, 0);
